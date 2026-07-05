@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="id">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Smartfren Speed Toolkit - Optimasi Legal</title>
+<meta name="description" content="Toolkit optimasi legal untuk pengguna Smartfren di Sulawesi. Tips APN, DNS, LTE only, dan tes kecepatan.">
+<meta name="theme-color" content="#1565C0">
+<style>
+:root{
+  --blue-900:#0D47A1;
+  --blue-700:#1565C0;
+  --blue-600:#1976D2;
+  --blue-50:#E3F2FD;
+  --blue-100:#BBDEFB;
+  --slate-900:#0F172A;
+  --slate-600:#475569;
+  --slate-500:#64748B;
+  --white:#FFFFFF;
+  --green:#2E7D32;
+  --ring:0 0 0 3px rgba(25,118,210,.18);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: linear-gradient(180deg,#f7fbff 0%, #ffffff 55%, #f7fbff 100%);
+  color:var(--slate-900);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+.app{max-width:740px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column}
+header.hero{
+  background: radial-gradient(1200px 600px at 50% -200px, #42a5f5 0%, transparent 60%), linear-gradient(135deg,var(--blue-900),var(--blue-600));
+  color:white;
+  padding:28px 20px 24px;
+  position:relative;
+  overflow:hidden;
+}
+header .top-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  padding:6px 12px;border-radius:999px;
+  font-size:12px;font-weight:600;letter-spacing:.3px;
+  backdrop-filter:blur(6px);
+}
+h1{margin:12px 0 4px;font-size:28px;line-height:1.15;font-weight:800;letter-spacing:-.3px}
+.subtitle{margin:0;opacity:.9;font-weight:600}
+.hero-grid{display:grid;gap:16px;margin-top:18px}
+.notice{
+  background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.2);
+  border-radius:16px;
+  padding:14px 14px;
+  font-size:14px;
+  line-height:1.5;
+  backdrop-filter: blur(8px);
+}
+.notice strong{color:#fff}
+.hero-wave{height:24px;background:linear-gradient(to bottom, transparent, #f7fbff);margin-top:16px;border-radius:12px 12px 0 0;opacity:.3}
+
+main{padding:18px 16px 32px;flex:1}
+.section{margin-bottom:22px}
+.section-title{
+  display:flex;align-items:center;gap:10px;
+  font-size:18px;font-weight:800;margin:0 0 12px;letter-spacing:-.2px
+}
+.section-title .dot{width:28px;height:28px;border-radius:8px;background:var(--blue-50);color:var(--blue-700);display:grid;place-items:center;font-size:16px}
+.card{
+  background:var(--white);
+  border:1px solid #e6eef8;
+  border-radius:18px;
+  padding:14px;
+  box-shadow:0 6px 20px rgba(13,71,161,.06),0 1px 3px rgba(13,71,161,.04);
+  margin-bottom:12px;
+}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0;color:var(--slate-600);font-size:14px}
+.tip-grid{display:grid;gap:12px}
+@media(min-width:720px){.tip-grid{grid-template-columns:1fr 1fr}}
+
+.copy-row{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:10px 12px;background:#f8fbff;border:1px dashed #d7e6fb;border-radius:12px;margin-top:10px
+}
+.copy-row .left{display:flex;flex-direction:column;gap:2px;min-width:0}
+.copy-row .label{font-size:12px;color:var(--slate-500)}
+.copy-row .value{font-weight:700;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:15px;word-break:break-all}
+.btn{
+  appearance:none;border:0;cursor:pointer;
+  padding:9px 12px;border-radius:10px;
+  background:var(--blue-600);color:white;font-weight:700;font-size:13px;
+  box-shadow:0 4px 10px rgba(25,118,210,.22);
+  transition:transform .08s ease, filter .2s ease, background .2s;
+  white-space:nowrap;flex-shrink:0
+}
+.btn:hover{filter:brightness(1.05)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn.secondary{background:var(--blue-50);color:var(--blue-700);box-shadow:none;border:1px solid #d2e3f9}
+.btn.small{padding:7px 10px;font-size:12.5px}
+.btn:disabled{opacity:.7}
+
+.apn-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.apn-item{background:#f8fbff;border:1px solid #e3eefc;border-radius:12px;padding:10px}
+.apn-item .k{font-size:11px;color:var(--slate-500);text-transform:uppercase;letter-spacing:.4px}
+.apn-item .v{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:4px;font-weight:700}
+.apn-item .v span{font-family:ui-monospace,monospace}
+
+.list-check{list-style:none;padding:0;margin:8px 0 0}
+.list-check li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:14px;color:var(--slate-600)}
+.list-check li svg{flex-shrink:0;margin-top:2px;color:var(--green)}
+
+.speed-card{padding:0;overflow:hidden}
+.speed-head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid #eef4ff;background:linear-gradient(180deg,#ffffff,#f9fbff)}
+.speed-head b{font-size:14px}
+.speed-wrapper{position:relative;background:#000}
+.speed-placeholder{
+  aspect-ratio:16/9;min-height:220px;
+  display:grid;place-items:center;text-align:center;color:#cfe4ff;
+  background: radial-gradient(600px 300px at 50% 0%, #1e3a8a 0%, #0b1220 70%);
+  padding:20px
+}
+.speed-placeholder svg{opacity:.9}
+.speed-placeholder p{margin:10px 0 14px;color:#e3f2fd;font-size:14px}
+#fastFrame{width:100%;height:380px;border:0;display:block;background:white}
+@media(max-width:420px){#fastFrame{height:340px}}
+.speed-foot{display:flex;gap:8px;flex-wrap:wrap;padding:10px 12px;background:#f8fbff;border-top:1px solid #eef4ff}
+.chip{font-size:12px;padding:6px 10px;border-radius:999px;background:#eef6ff;color:#0d47a1;border:1px solid #d7e6fb}
+
+.steps{counter-reset:step;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{
+  counter-increment:step;
+  background:white;border:1px solid #e6eef8;border-radius:14px;padding:12px 12px 12px 48px;position:relative
+}
+.steps li::before{
+  content:counter(step);position:absolute;left:12px;top:12px;width:26px;height:26px;border-radius:8px;
+  background:var(--blue-700);color:white;display:grid;place-items:center;font-weight:800;font-size:13px;
+  box-shadow:0 3px 8px rgba(21,101,192,.3)
+}
+.steps b{display:block;margin-bottom:4px}
+.steps code{background:#f1f5f9;padding:2px 6px;border-radius:6px;font-family:ui-monospace,monospace;font-size:12.5px}
+
+footer{padding:20px 16px 40px;color:var(--slate-500);font-size:12.5px;text-align:center}
+.disclaimer{
+  margin:12px auto 0;max-width:640px;
+  background:#fff7e6;border:1px solid #ffe0b2;color:#8a4b00;
+  padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.45
+}
+
+.toast{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);
+  background:#0b1220;color:white;padding:10px 14px;border-radius:12px;
+  font-weight:600;font-size:13px;box-shadow:0 10px 30px rgba(0,0,0,.25);
+  opacity:0;pointer-events:none;transition:.25s;z-index:99;white-space:nowrap
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="hero">
+    <span class="top-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 13h2v8H3zM19 5h2v16h-2zM11 9h2v12h-2zM7 17h2v4H7zM15 1h2v20h-2z" fill="currentColor"/></svg>
+      Khusus Sulawesi
+    </span>
+    <h1>Smartfren Speed Toolkit</h1>
+    <p class="subtitle">Optimasi Legal — tanpa root, tanpa bypass</p>
+    <div class="hero-grid">
+      <div class="notice">
+        <strong>Penting:</strong> GitHub Pages <u>tidak bisa</u> menambah kecepatan fisik jaringan Smartfren. Fungsinya untuk <b>hosting tools gratis</b> seperti halaman ini — berisi tips, APN, DNS, dan shortcut tes kecepatan agar kamu bisa optimasi sendiri dengan cepat dan legal.
+      </div>
+    </div>
+    <div class="hero-wave"></div>
+  </header>
+
+  <main>
+    <!-- TIPS CEPAT -->
+    <section class="section">
+      <h2 class="section-title"><span class="dot">⚡</span> Tips Cepat</h2>
+      <div class="tip-grid">
+        <div class="card">
+          <h3>1) Ganti DNS</h3>
+          <p>DNS cepat sering bikin browsing & buka aplikasi lebih responsif di jaringan padat.</p>
+          <div class="copy-row">
+            <div class="left">
+              <span class="label">Cloudflare</span>
+              <span class="value">1.1.1.1</span>
+            </div>
+            <button class="btn secondary small" data-copy="1.1.1.1">Salin</button>
+          </div>
+          <div class="copy-row">
+            <div class="left">
+              <span class="label">Google</span>
+              <span class="value">8.8.8.8</span>
+            </div>
+            <button class="btn secondary small" data-copy="8.8.8.8">Salin</button>
+          </div>
+          <ul class="list-check">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4z" fill="currentColor"/></svg>Android: Setelan → Jaringan → DNS Pribadi → isi <b>1dot1dot1dot1.cloudflare-dns.com</b></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>2) APN Smartfren 4G</h3>
+          <p>Pakai setelan standar resmi untuk koneksi stabil.</p>
+          <div class="apn-grid">
+            <div class="apn-item">
+              <div class="k">Nama</div>
+              <div class="v"><span>Smartfren</span><button class="btn secondary small" data-copy="Smartfren">Salin</button></div>
+            </div>
+            <div class="apn-item">
+              <div class="k">APN</div>
+              <div class="v"><span>smartfren4g</span><button class="btn secondary small" data-copy="smartfren4g">Salin</button></div>
+            </div>
+            <div class="apn-item">
+              <div class="k">MCC</div>
+              <div class="v"><span>510</span><button class="btn secondary small" data-copy="510">Salin</button></div>
+            </div>
+            <div class="apn-item">
+              <div class="k">MNC</div>
+              <div class="v"><span>09</span><button class="btn secondary small" data-copy="09">Salin</button></div>
+            </div>
+          <ul class="list-check">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z" fill="currentColor"/></svg>Simpan APN baru, lalu restart data seluler.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>3) Kunci LTE Only (Android)</h3>
+          <p>Menghindari pindah-pindah ke 3G saat sinyal lemah. Gunakan dengan bijak.</p>
+          <div class="copy-row">
+            <div class="left">
+              <span class="label">Dial Code</span>
+              <span class="value">*#*#4636#*#*</span>
+            </div>
+            <button class="btn secondary small" data-copy="*#*#4636#*#*">Salin</button>
+          </div>
+          <ul class="list-check">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-1.4 1.4L9 19 20.3 7.7l-1.4z" fill="currentColor"/></svg>Buka → Phone Information → Set Preferred Network ke <b>LTE only</b></li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4z" fill="currentColor"/></svg>Jika tidak ada sinyal telepon, kembalikan ke LTE/WCDMA.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>4) Hemat Bandwidth</h3>
+          <p>Matikan auto-update & batasi data latar.</p>
+          <ul class="list-check">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z" fill="currentColor"/></svg>Play Store → Setelan → Update otomatis → Hanya via Wi-Fi</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-1.4 1.4L9 19 20.3 7.7l-1.4z" fill="currentColor"/></svg>Android: Setelan → Penggunaan Data → Penghemat Data ON</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z" fill="currentColor"/></svg>Tutup aplikasi berat di latar (TikTok, IG, YouTube autoplay)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TES KECEPATAN -->
+    <section class="section">
+      <h2 class="section-title"><span class="dot">🚀</span> Tes Kecepatan</h2>
+      <div class="card speed-card">
+        <div class="speed-head">
+          <b>Fast.com (Netflix)</b>
+          <span class="chip">disarankan pakai paket utama</span>
+        </div>
+        <div class="speed-wrapper">
+          <div class="speed-placeholder" id="placeholder">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none"><path d="M13 10V3L4 14h7v7l9-11h-7z" fill="currentColor" opacity=".9"/></svg>
+            <p>Tes butuh koneksi aktif Smartfren.<br>Klik untuk memuat alat tes.</p>
+            <button class="btn" id="loadFast">Mulai Tes Kecepatan</button>
+          </div>
+          <iframe id="fastFrame" title="Speed Test Fast.com" loading="lazy" referrerpolicy="no-referrer" allowfullscreen hidden></iframe>
+        </div>
+        <div class="speed-foot">
+          <a class="chip" href="https://fast.com" target="_blank" rel="noopener">Buka fast.com di tab baru →</a>
+          <span class="chip">Tips: tes 2–3x pada jam berbeda</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GITHUB PAGES -->
+    <section class="section">
+      <h2 class="section-title"><span class="dot">🌐</span> Hosting di GitHub Pages</h2>
+      <div class="card">
+        <p style="margin-bottom:10px">Halaman ini bisa kamu host gratis. Cocok buat simpan toolkit pribadi.</p>
+        <ol class="steps">
+          <li><b>Buat repository</b><p>Login GitHub → New repo → nama: <code>username.github.io</code> (ganti username).</p></li>
+          <li><b>Upload file</b><p>Upload file HTML ini sebagai <code>index.html</code> ke branch <code>main</code>.</p></li>
+          <li><b>Aktifkan Pages</b><p>Settings → Pages → Source: <code>Deploy from a branch</code> → Branch: <code>main</code> / root → Save. Akses di https://username.github.io</p></li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="disclaimer">
+      <b>Disclaimer:</b> Toolkit ini hanya untuk optimasi perangkat & setelan resmi. <u>Tidak</u> untuk bypass kuota, inject, atau aktivitas ilegal. Kecepatan tetap tergantung cakupan BTS, kepadatan pengguna, dan paket aktif di wilayah Sulawesi.
+    </div>
+    <p>© 2025 Smartfren Speed Toolkit — Komunitas Pengguna Sulawesi</p>
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const toast = document.getElementById('toast');
+function showToast(msg){
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>toast.classList.remove('show'), 1700);
+}
+async function copyText(text, btn){
+  try{
+    if(navigator.clipboard && window.isSecureContext){
+      await navigator.clipboard.writeText(text);
+    }else{
+      const ta = document.createElement('textarea');
+      ta.value=text; ta.setAttribute('readonly',''); ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+    }
+    const old = btn.innerHTML;
+    btn.innerHTML = '✓ Disalin';
+    btn.disabled = true;
+    showToast('Disalin: '+text);
+    setTimeout(()=>{ btn.innerHTML = old; btn.disabled = false; }, 1400);
+  }catch(e){
+    showToast('Gagal menyalin');
+  }
+}
+document.querySelectorAll('[data-copy]').forEach(b=>{
+  b.addEventListener('click', ()=> copyText(b.dataset.copy, b));
+});
+
+const loadBtn = document.getElementById('loadFast');
+const frame = document.getElementById('fastFrame');
+const ph = document.getElementById('placeholder');
+loadBtn.addEventListener('click', ()=>{
+  ph.style.display='none';
+  frame.hidden=false;
+  frame.src='https://fast.com';
+  showToast('Memuat fast.com…');
+});
+</script>
+<script>(function(){document.addEventListener("click",function(e){var a=e.target.closest("[data-product-id]");if(!a)return;e.preventDefault();var pid=a.getAttribute("data-product-id");if(pid)parent.postMessage({type:"ecto-artifact-link-click",productId:pid},"*")})})();</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;var a=target.closest?target.closest("a[href]"):null;if(!a||!a.href||!/^https?:\/\//.test(a.href))return;if(a.href.replace(/#.*$/,"")===loc)return;var productId=extractProductId(target)||extractProductId(a);if(!productId)return;e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*")},true)})();</script></body>
+</html>
